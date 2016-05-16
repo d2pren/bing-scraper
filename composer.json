@@ -1,0 +1,25 @@
+{
+  "name": "mojopollo/bing-scraper",
+  "description": "Scrape Bing images and web web search results",
+  "keywords": ["bing scraper", "bing images", "bing search", "Bing Image Search", "Bing Web Search", "bing", "scraper", "mojopollo", "mojo", "laravel"],
+  "license" : "MIT",
+  "authors": [
+    {
+      "name": "Jaime Medina",
+      "email": "jmedina@qujo.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "illuminate/support": "~5.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.7.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Mojopollo\\BingScraper\\": "src/"
+    }
+  },
+  "minimum-stability": "stable"
+}

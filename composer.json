@@ -1,7 +1,7 @@
 {
   "name": "mojopollo/bing-scraper",
   "description": "Scrapes search results from Bing Image and Web Search.",
-  "keywords": ["bing scraper", "bing images", "bing search", "bing image search", "bing web search", "bing", "scraper", "mojopollo", "mojo", "laravel"],
+  "keywords": [],
   "license" : "MIT",
   "authors": [
     {

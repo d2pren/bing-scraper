@@ -3,7 +3,7 @@ namespace Mojopollo\BingScraper;
 
 use Illuminate\Support\ServiceProvider;
 
-class BingScraperServiceProvider extends ServiceProvider
+class ImageServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -21,8 +21,8 @@ class BingScraperServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bindShared('bingscraper', function () {
-            return new BingScraper;
+        $this->app->bindShared('bingimagescraper', function () {
+            return new Image;
         });
     }
 
@@ -33,6 +33,6 @@ class BingScraperServiceProvider extends ServiceProvider
     */
     public function provides()
     {
-        return ['bingscraper'];
+        return ['bingimagescraper'];
     }
 }

@@ -3,16 +3,15 @@ namespace Mojopollo\BingScraper\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class BingScraper extends Facade
+class Image extends Facade
 {
-
     /**
-    * Get the registered name of the component.
+    * Get the registered name of the component
     *
-    * @return arr
+    * @return string
     */
     protected static function getFacadeAccessor()
     {
-        return 'bingscraper';
+        return 'bingimagescraper';
     }
 }

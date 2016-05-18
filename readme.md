@@ -75,36 +75,36 @@ $bingImageScraper
     ->type('photograph')
     ->scrape();
 
-[
-    'meta' => [
-        'status' => 200,
-        'error' => null,
-        'count' => 20
-    ],
-    'results' => [
-        [
-            'url' => 'http://example.com/my-sloths',
-            'image' => 'http://example.com/my-sloths/images/sloth-smiling.jpg',
-            'width' => '1900',
-            'height' => '600',
-            'format' => 'jpeg',
-            'meta' => [
-              'ns' => 'images',
-              'k' => '3599',
-              'mid' => 'FXDP1BZ7EHN12BL7O2QVTZOXO0UYTGSRDHKF1COX',
-              'cid' => 'zAN2dtE2',
-              'md5' => '49f68a5c8493ec2c0bf489821c21fc3b',
-              'tid' => 'OIP.O6qE4AQEPKPewVVT746gVXk6dqMNIsQEybC',
-              'docid' => '329832932856960383',
-              'tft' => '45',
-              'mw' => '634',
-              'mh' => '1024',
-              'thH' => '300',
-              'thW' => '18'"
-            ]
-        ],
-        ...
-    ]
-]
+// [
+//     'meta' => [
+//         'status' => 200,
+//         'error' => null,
+//         'count' => 20
+//     ],
+//     'results' => [
+//         [
+//             'url' => 'http://example.com/my-sloths',
+//             'image' => 'http://example.com/my-sloths/images/sloth-smiling.jpg',
+//             'width' => '1900',
+//             'height' => '600',
+//             'format' => 'jpeg',
+//             'meta' => [
+//               'ns' => 'images',
+//               'k' => '3599',
+//               'mid' => 'FXDP1BZ7EHN12BL7O2QVTZOXO0UYTGSRDHKF1COX',
+//               'cid' => 'zAN2dtE2',
+//               'md5' => '49f68a5c8493ec2c0bf489821c21fc3b',
+//               'tid' => 'OIP.O6qE4AQEPKPewVVT746gVXk6dqMNIsQEybC',
+//               'docid' => '329832932856960383',
+//               'tft' => '45',
+//               'mw' => '634',
+//               'mh' => '1024',
+//               'thH' => '300',
+//               'thW' => '18'"
+//             ]
+//         ],
+//         ...
+//     ]
+// ]
 
 ```

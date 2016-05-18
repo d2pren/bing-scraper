@@ -28,7 +28,8 @@ Next, require Composer's autoloader in your application to automatically load th
 
 ```php
 require 'vendor/autoload.php';
-use Mojopollo\BingScraper;
+use Mojopollo\BingScraper\Image as BingImageScraper;
+use Mojopollo\BingScraper\Web as BingWebScraper;
 ```
 
 #### Composer and Laravel 5
@@ -65,7 +66,7 @@ In progress
 #### Vanilla PHP
 
 ```php
-use Mojopollo\BingScraper\Image as BingImageScraper
+use Mojopollo\BingScraper\Image as BingImageScraper;
 
 $bingImageScraper = new BingImageScraper;
 

@@ -28,6 +28,7 @@ Next, require Composer's autoloader in your application to automatically load th
 
 ```php
 require 'vendor/autoload.php';
+
 use Mojopollo\BingScraper\Image as BingImageScraper;
 use Mojopollo\BingScraper\Web as BingWebScraper;
 ```
@@ -66,15 +67,24 @@ In progress
 #### Vanilla PHP
 
 ```php
+// Load the composer autoloader
+require 'vendor/autoload.php';
+
+// Namespace the scraper
 use Mojopollo\BingScraper\Image as BingImageScraper;
 
+// Instantiate image scraper class
 $bingImageScraper = new BingImageScraper;
 
+// Set options and scrape
+// see "options" section in this readme for all available options
 $bingImageScraper
     ->query('sloth smiling')
     ->safe('strict')
     ->type('photograph')
     ->scrape();
+
+// This is what you get back
 
 // [
 //     'meta' => [

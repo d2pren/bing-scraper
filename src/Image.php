@@ -1,7 +1,7 @@
 <?php
 namespace Mojopollo\BingScraper;
 
-class Image
+class Image extends Scraper
 {
     /**
     * Search filter options and their query parameter equivalents

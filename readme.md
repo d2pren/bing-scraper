@@ -42,7 +42,7 @@ Next, add the following laravel 5 service provider by modifying your ```app/Prov
 ```php
 public function register()
 {
-    $this->app->register('Mojopollo\BingScraper\BingScraperServiceProvider');
+    $this->app->register('Mojopollo\BingScraper\ImageServiceProvider');
 }
 ```
 

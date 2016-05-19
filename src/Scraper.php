@@ -1,7 +1,7 @@
 <?php
 namespace Mojopollo\BingScraper;
 
-use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Client;
 
 /**
  * Mostly the communication with the guzzle client
@@ -27,7 +27,7 @@ class Scraper implements ScraperInterface
     public function httpRequest($method, $uri, $options)
     {
         // Create guzzle client
-        $client = new GuzzleClient();
+        $client = new Client();
 
         // If no user-agent was provided, do not send one
         // Guzzle sends something like this as the User-Agent:
@@ -70,6 +70,7 @@ class Scraper implements ScraperInterface
         if ($this->debug) {
             $results['meta']['debug'] = [
                 'headers' => $response->getHeaders(),
+                'body' => (string) $response->getBody(),
             ];
         }
 

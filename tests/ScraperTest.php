@@ -44,7 +44,7 @@ class ScraperTest extends \PHPUnit_Framework_TestCase
     {
         // Execute method
         $response = $this->scraper->httpRequest('GET', 'http://www.qujo.com', []);
-        $result = $this->scraper->debug(false)->httpResponse($response);
+        $result = $this->scraper->debug(true)->httpResponse($response);
         fwrite(STDERR, print_r($result, true));
 
         // Check result

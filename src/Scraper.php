@@ -8,6 +8,22 @@ use GuzzleHttp\Client as GuzzleClient;
  */
 class Scraper implements ScraperInterface
 {
+    /**
+     * Debug switch
+     *
+     * @var bool
+     */
+    public $debug = false;
+
+    public function debug($value)
+    {
+        // Set debug value
+        $this->debug = (bool) $value;
+
+        // Return instance
+        return $this;
+    }
+
     public function httpRequest($method, $uri, $options)
     {
         // Create guzzle client
@@ -34,6 +50,30 @@ class Scraper implements ScraperInterface
 
     public function httpResponse($response)
     {
-        return $response->getStatusCode();
+        // Create results array
+        $results = [
+            'meta' => [
+                'statusCode' => $response->getStatusCode(),
+                'contentType' =>
+                    isset($response->getHeader('Content-Type')[0])
+                    ? $response->getHeader('Content-Type')[0]
+                    : $response->getHeader('Content-Type'),
+                'cookies' => $response->getHeader('Set-Cookie'),
+                'error' => null,
+                'count' => 0,
+            ],
+            'results' => [
+            ],
+        ];
+
+        // Set debug info if debug is on
+        if ($this->debug) {
+            $results['meta']['debug'] = [
+                'headers' => $response->getHeaders(),
+            ];
+        }
+
+        // Return results array
+        return $results;
     }
 }

@@ -4,6 +4,14 @@ namespace Mojopollo\BingScraper;
 interface ImageInterface
 {
     /**
+     * Set debug mode on
+     *
+     * @param  bool  $value  true|false
+     * @return $this
+     */
+    public function debug($value);
+
+    /**
      * Makes a http request to URI path
      *
      * @see https://github.com/guzzle/guzzle Links to Guzzle docs

@@ -15,6 +15,15 @@ class Scraper implements ScraperInterface
      */
     public $debug = false;
 
+    /**
+     * Trace file path
+     *
+     * Will dump CURL's trace output to this file
+     *
+     * @var string
+     */
+    public $traceFile = null;
+
     public function debug($value)
     {
         // Set debug value
@@ -24,10 +33,28 @@ class Scraper implements ScraperInterface
         return $this;
     }
 
+    public function traceFile($value)
+    {
+        // Set debug value
+        $this->traceFile = $value;
+
+        // Return instance
+        return $this;
+    }
+
+    public function openFile($filePath)
+    {
+        return fopen($filePath, 'a');
+    }
+
     public function httpRequest($method, $uri, $options)
     {
+        // Set any debug options
+        $debugOptions = isset($this->traceFile) ? ['debug' => $this->openFile($this->traceFile)] : [];
+        file_put_contents('./dump.txt', json_encode($this->traceFile));
+
         // Create guzzle client
-        $client = new Client();
+        $client = new Client($debugOptions);
 
         // If no user-agent was provided, do not send one
         // Guzzle sends something like this as the User-Agent:

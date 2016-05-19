@@ -12,6 +12,22 @@ interface ImageInterface
     public function debug($value);
 
     /**
+     * Will dump CURL's trace output to this file
+     *
+     * @param  string $value File path where the trace file should be dumped to
+     * @return $this
+     */
+    public function traceFile($value);
+
+    /**
+     * Return a file open resource (append mode)
+     *
+     * @param  string $filePath Path to the file to be appended
+     * @return resource           fopen()
+     */
+    public function openFile($filePath);
+
+    /**
      * Makes a http request to URI path
      *
      * @see https://github.com/guzzle/guzzle Links to Guzzle docs

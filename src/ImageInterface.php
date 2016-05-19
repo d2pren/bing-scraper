@@ -1,7 +1,7 @@
 <?php
 namespace Mojopollo\BingScraper;
 
-interface ScraperInterface
+interface ImageInterface
 {
     /**
      * Makes a http request to URI path

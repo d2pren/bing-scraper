@@ -31,4 +31,9 @@ class Scraper implements ScraperInterface
             'headers' => $headers,
         ]);
     }
+
+    public function httpResponse($response)
+    {
+        return $response->getStatusCode();
+    }
 }

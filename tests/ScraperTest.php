@@ -36,15 +36,16 @@ class ScraperTest extends \PHPUnit_Framework_TestCase
         $this->scraper = null;
     }
     /**
-    * Test sortByPriority() with loose natch
+    * Test httpResponse() with results
     *
     * @return void
     */
-    public function testRequest()
+    public function testHttpResponse()
     {
         // Execute method
-        $result = $this->scraper->httpRequest('GET', 'http://www.qujo.com', []);
-        // fwrite(STDERR, print_r($result, true));
+        $response = $this->scraper->httpRequest('GET', 'http://www.qujo.com', []);
+        $result = $this->scraper->httpResponse($response);
+        fwrite(STDERR, print_r($result, true));
 
         // Check result
         // $this->assertEquals($result, $expectedArray);

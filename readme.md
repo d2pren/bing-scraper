@@ -27,8 +27,10 @@ php composer.phar require mojopollo/bing-scraper
 Next, require Composer's autoloader in your application to automatically load the BingScraper class into your project:
 
 ```php
+// Load the composer autoloader
 require 'vendor/autoload.php';
 
+// Alias the scraper classes
 use Mojopollo\BingScraper\Image as BingImageScraper;
 use Mojopollo\BingScraper\Web as BingWebScraper;
 ```
@@ -70,7 +72,7 @@ In progress
 // Load the composer autoloader
 require 'vendor/autoload.php';
 
-// Namespace the scraper
+// Alias the scraper image class
 use Mojopollo\BingScraper\Image as BingImageScraper;
 
 // Instantiate image scraper class

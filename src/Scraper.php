@@ -70,7 +70,7 @@ class Scraper implements ScraperInterface
         if ($this->debug) {
             $results['meta']['debug'] = [
                 'headers' => $response->getHeaders(),
-                'body' => (string) $response->getBody(),
+                'body' => $response->getBody()->getContents(),
             ];
         }
 

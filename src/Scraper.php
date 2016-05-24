@@ -2,6 +2,7 @@
 namespace Mojopollo\BingScraper;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\HandlerStack;
 
 /**
  * Mostly the communication with the guzzle client
@@ -31,6 +32,13 @@ class Scraper implements ScraperInterface
      */
     public $results;
 
+    /**
+     * For mocks, to be set in unit tests
+     *
+     * @var HandlerStack
+     */
+    public $handler;
+
     public function debug($value)
     {
         // Set debug value
@@ -56,12 +64,17 @@ class Scraper implements ScraperInterface
 
     public function httpRequest($method, $uri, $options)
     {
-        // Set guzzle client options
+        // Guzzle client options
         $clientOptions = [];
 
         // Set debug settings
         if (isset($this->traceFile)) {
             $clientOptions['debug'] = $this->openFile($this->traceFile);
+        }
+
+        // Set handler
+        if ($this->handler instanceof HandlerStack) {
+            $clientOptions['handler'] = $this->handler;
         }
 
         // Create guzzle client
@@ -76,14 +89,6 @@ class Scraper implements ScraperInterface
 
         // Send request and return results
         return $client->request($method, $uri, $options);
-    }
-
-    public function httpGet($uri, $query = null, $headers = null)
-    {
-        return $this->request('GET', $uri, [
-            'query' => $query,
-            'headers' => $headers,
-        ]);
     }
 
     public function httpResponse($response)
@@ -114,5 +119,13 @@ class Scraper implements ScraperInterface
 
         // Return results array
         return $this->results;
+    }
+
+    public function httpGet($uri, $query = null, $headers = null)
+    {
+        return $this->request('GET', $uri, [
+            'query' => $query,
+            'headers' => $headers,
+        ]);
     }
 }

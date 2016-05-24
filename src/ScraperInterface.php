@@ -21,14 +21,4 @@ interface ScraperInterface
      * @return array            Contains response body and meta data
      */
     public function httpResponse($response);
-
-    /**
-     * GET shortcut to request method
-     *
-     * @param  string $method  GET/POST/etc
-     * @param  string $uri     The url/uri of the site
-     * @param  array  $headers Array containing http request headers
-     * @return object          Returns guzzle response object
-     */
-    public function httpGet($uri, $query = null, $headers = null);
 }

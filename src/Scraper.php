@@ -120,12 +120,4 @@ class Scraper implements ScraperInterface
         // Return results array
         return $this->results;
     }
-
-    public function httpGet($uri, $query = null, $headers = null)
-    {
-        return $this->request('GET', $uri, [
-            'query' => $query,
-            'headers' => $headers,
-        ]);
-    }
 }

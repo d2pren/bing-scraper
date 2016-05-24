@@ -18,6 +18,20 @@ class ScraperTest extends \PHPUnit_Framework_TestCase
     protected $scraper;
 
     /**
+    * MockHandler class object
+    *
+    * @var MockHandler
+    */
+    protected $mockImageHandler;
+
+    /**
+    * MockHandler class object
+    *
+    * @var MockHandler
+    */
+    protected $mockWebHandler;
+
+    /**
     * This will run at the beginning of every test method
     */
     public function setUp()
@@ -27,6 +41,9 @@ class ScraperTest extends \PHPUnit_Framework_TestCase
 
         // Set Scraper instance
         $this->scraper = new Scraper;
+
+        // Create mock handlers
+        $this->createMockHandler();
     }
 
     /**
@@ -37,19 +54,18 @@ class ScraperTest extends \PHPUnit_Framework_TestCase
         // Parent teardown
         parent::tearDown();
 
-        // Unset Arr class
+        // Unset Scraper instance
         $this->scraper = null;
     }
 
     /**
-    * Test httpRequest() results
-    *
-    * @return void
-    */
-    public function testHttpRequest()
+     * Creates and sets a mock handler for tests
+     * @return void
+     */
+    public function createMockHandler()
     {
-        // Create a mock response from bing
-        $body = file_get_contents('./tests/samples/results-sloth-smiling.html');
+        // Create a mock response from bing images
+        $body = file_get_contents('./tests/samples/image-results-sloth-smiling.html');
         $mock = new MockHandler([
             new Response(200, [
                 'Cache-Control' => 'no-cache, no-store, must-revalidate',
@@ -78,8 +94,19 @@ class ScraperTest extends \PHPUnit_Framework_TestCase
             ], $body),
         ]);
 
+        // Set mock image handler
+        $this->mockImageHandler = HandlerStack::create($mock);
+    }
+
+    /**
+    * Test httpRequest() results
+    *
+    * @return void
+    */
+    public function testHttpRequest()
+    {
         // Set mock handler
-        $this->scraper->handler = HandlerStack::create($mock);
+        $this->scraper->handler = $this->mockImageHandler;
 
         // Send request
         $response = $this->scraper->httpRequest('GET', '/', []);

@@ -22,7 +22,14 @@ class Scraper implements ScraperInterface
      *
      * @var string
      */
-    public $traceFile = null;
+    public $traceFile;
+
+    /**
+     * Results of the scrape
+     *
+     * @var array
+     */
+    public $results;
 
     public function debug($value)
     {
@@ -49,15 +56,19 @@ class Scraper implements ScraperInterface
 
     public function httpRequest($method, $uri, $options)
     {
-        // Set any debug options
-        $debugOptions = isset($this->traceFile) ? ['debug' => $this->openFile($this->traceFile)] : [];
-        file_put_contents('./dump.txt', json_encode($this->traceFile));
+        // Set guzzle client options
+        $clientOptions = [];
+
+        // Set debug settings
+        if (isset($this->traceFile)) {
+            $clientOptions['debug'] = $this->openFile($this->traceFile);
+        }
 
         // Create guzzle client
-        $client = new Client($debugOptions);
+        $client = new Client($clientOptions);
 
         // If no user-agent was provided, do not send one
-        // Guzzle sends something like this as the User-Agent:
+        // Guzzle sends something like this as the User-Agent header:
         // GuzzleHttp/6.2.0 curl/7.43.0 PHP/7.0.6
         if (!isset($options['headers']['User-Agent'])) {
             $options['headers']['User-Agent'] = null;
@@ -78,7 +89,7 @@ class Scraper implements ScraperInterface
     public function httpResponse($response)
     {
         // Create results array
-        $results = [
+        $this->results = [
             'meta' => [
                 'statusCode' => $response->getStatusCode(),
                 'contentType' =>
@@ -95,13 +106,13 @@ class Scraper implements ScraperInterface
 
         // Set debug info if debug is on
         if ($this->debug) {
-            $results['meta']['debug'] = [
+            $this->results['meta']['debug'] = [
                 'headers' => $response->getHeaders(),
                 'body' => $response->getBody()->getContents(),
             ];
         }
 
         // Return results array
-        return $results;
+        return $this->results;
     }
 }

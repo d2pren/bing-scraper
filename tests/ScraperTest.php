@@ -43,7 +43,7 @@ class ScraperTest extends \PHPUnit_Framework_TestCase
     public function testHttpResponse()
     {
         // Execute method
-        $response = $this->scraper->traceFile('./mojo.txt')->httpRequest('GET', 'http://www.qujo.com', []);
+        $response = $this->scraper->traceFile('./trace-file.txt')->httpRequest('GET', 'http://www.qujo.com', []);
         $result = $this->scraper->debug(true)->httpResponse($response);
         fwrite(STDERR, print_r($result, true));
 

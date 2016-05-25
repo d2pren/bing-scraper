@@ -43,7 +43,7 @@ class ScraperTest extends \PHPUnit_Framework_TestCase
         $this->scraper = new Scraper;
 
         // Create mock handlers
-        $this->createMockHandler();
+        $this->createMockHandlers();
     }
 
     /**
@@ -62,7 +62,7 @@ class ScraperTest extends \PHPUnit_Framework_TestCase
      * Creates and sets a mock handler for tests
      * @return void
      */
-    public function createMockHandler()
+    public function createMockHandlers()
     {
         // Create a mock response from bing images
         $body = file_get_contents('./tests/samples/image-results-sloth-smiling.html');
@@ -99,7 +99,7 @@ class ScraperTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-    * Test httpRequest() results
+    * Test httpRequest()
     *
     * @return void
     */
@@ -117,7 +117,7 @@ class ScraperTest extends \PHPUnit_Framework_TestCase
             'httpRequest() return is not an instance of GuzzleHttp\Psr7\Response'
         );
 
-        // Test that we got body contents back
+        // Check that we received body contents back
         $this->assertFalse(
             empty($response->getBody()->getContents()),
             '$response->getBody()->getContents() was empty'
@@ -127,9 +127,37 @@ class ScraperTest extends \PHPUnit_Framework_TestCase
         return $response;
     }
 
+    /**
+    * Test httpRequest() with trace file optoin
+    *
+    * @return void
+    */
+    public function testHttpRequestTraceFileOption()
+    {
+        // Set mock handler
+        $this->scraper->handler = $this->mockImageHandler;
+
+        // Set trace file
+        $traceFile = './trace-file.txt';
+
+        // Send request
+        $response = $this->scraper->traceFile($traceFile)->httpRequest('GET', '/', []);
+
+        // Check for trace file creation
+        $traceFileExists = file_exists($traceFile);
+        $this->assertTrue(
+            $traceFileExists,
+            "{$traceFile} was not created"
+        );
+
+        // Remove trace file created
+        if ($traceFileExists) {
+            unlink($traceFile);
+        }
+    }
 
     /**
-    * Test httpResponse() with results
+    * Test httpResponse() with response results
     *
     * @depends testHttpRequest
     * @return void
